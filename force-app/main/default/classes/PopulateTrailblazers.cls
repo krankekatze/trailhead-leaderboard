@@ -107,7 +107,9 @@ global class PopulateTrailblazers implements Schedulable {
             tb.Trailblazer_Since__c = createdAt.format('MMMM d, yyyy');
 
             // Profile Id
-            tb.Profile_Id__c = String.valueOf(userMap.get('th_sfid'));
+            tb.Profile_Id__c = userMap.get('th_sfid') != null
+                                    ? String.valueOf(userMap.get('th_sfid'))
+                                    : String.valueOf(userMap.get('slug'));
 
             // Profile Link
             tb.Profile_Link__c = String.valueOf(aboutMeMap.get('profileShortcutUrl'));
